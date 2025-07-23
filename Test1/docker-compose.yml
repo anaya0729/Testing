@@ -1,0 +1,11 @@
+version: '3.12.1'
+
+services:
+  jupyter:
+    image: my-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/Test1
+    working_dir: /home/jovyan/Test1
+    command: start-notebook.sh --NotebookApp.token=''
