@@ -19,7 +19,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t flask-app .
+        docker build -t flask-app -f Test1/Dockerfile .
 
     - name: Test Docker Image (optional)
       run: |
