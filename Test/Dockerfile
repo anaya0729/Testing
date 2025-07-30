@@ -1,17 +1,12 @@
-# Use official Python image
-FROM python:3.12.1
-
-# Set working directory
+# ---------- Stage 1: Build and install dependencies ----------
+FROM python:3.12.1 AS builder
 WORKDIR /app
+RUN pip install --prefix=/install flask
 
-# Copy app code
+# ---------- Stage 2: Final image ----------
+FROM python:3.12.1
+WORKDIR /app
+COPY --from=builder /install /usr/local
 COPY app.py .
-
-# Install Flask directly via pip
-RUN pip install flask
-
-# Expose port
 EXPOSE 5000
-
-# Run the app
 CMD ["python", "app.py"]
